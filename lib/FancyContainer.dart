@@ -34,7 +34,7 @@ class _FancyContainerState extends State<FancyContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width??MediaQuery.of(context).size.width*0.9,
+      /*width: widget.width??MediaQuery.of(context).size.width*0.9,
       height: widget.height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -51,7 +51,10 @@ class _FancyContainerState extends State<FancyContainer> {
           Text(widget.title??"",style: TextStyle(color: widget.textColor,fontSize: 15),),
           Text(widget.subtitle??"",style: TextStyle(color: widget.subtitleColor ,fontSize: 15),),
         ],
-      ),
+      ),*/
+      color: Colors.red,
+      height: 100,
+      width: 100,
     );
   }
 }
