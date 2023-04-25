@@ -1,29 +1,9 @@
-
+import 'package:carousel_slider/carousel_controller.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:newfluttercontainer/data.dart';
 
 class FancyContainer extends StatefulWidget {
-
-  const FancyContainer({
-    Key? key,
-    this.height=120,
-    this.width,
-    this.color1,
-    this.color2,
-    this.title,
-    this.textColor,
-    this.subtitle,
-    this.subtitleColor,
-  }): super(key:key);
-
-  final double? width;
-  final double? height;
-  final Color? color1;
-  final Color? color2;
-  final String? title;
-  final Color? textColor;
-  final String? subtitle;
-  final Color? subtitleColor;
-
 
   @override
   State<FancyContainer> createState() => _FancyContainerState();
@@ -33,28 +13,82 @@ class _FancyContainerState extends State<FancyContainer> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      /*width: widget.width??MediaQuery.of(context).size.width*0.9,
-      height: widget.height,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-        gradient: LinearGradient(
-            colors: [widget.color1??Colors.red,widget.color2??Colors.green],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight
-        ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(widget.title??"",style: TextStyle(color: widget.textColor,fontSize: 15),),
-          Text(widget.subtitle??"",style: TextStyle(color: widget.subtitleColor ,fontSize: 15),),
-        ],
-      ),*/
-      color: Colors.red,
-      height: 100,
-      width: 100,
-    );
+    return  Scaffold(
+      backgroundColor: Colors.black,
+        body: SafeArea(
+            child:SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    height: 100,
+                    color: Colors.black,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                       // mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.arrow_back_rounded,color: Colors.white),
+                          Spacer(),
+                          Text("MY USAGE",style: TextStyle(color: Colors.white)),
+                          Spacer(),
+                          Text("",style: TextStyle(color: Colors.white))
+                        ],
+                      ),
+                    ),
+                   ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10,right: 10),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                        BorderRadius.only(topLeft: Radius.circular(35), topRight: Radius.circular(35)),
+                        color: Colors.grey[300],
+                      ),
+                      child: new DefaultTabController(
+                        length:4,
+                        child: new Scaffold(
+                          appBar: new PreferredSize(
+                            preferredSize: Size.fromHeight(kToolbarHeight),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: new Container(
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                  BorderRadius.only(topLeft: Radius.circular(35), topRight: Radius.circular(35)),
+                                  color: Colors.white,
+                                ),
+                                height: 50.0,
+                                child: new TabBar(
+                                  indicatorColor: Colors.white,
+                                  unselectedLabelColor: Colors.black,
+                                 // indicatorColor:Color(0xff5808e5) ,
+                                  labelColor: Colors.red,
+                                  tabs: [
+                                    Tab(text: "Data"),
+                                    Tab(text: "Calls"),
+                                    Tab(text: "SMS"),
+                                    Tab(text: "Additional"),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          body: TabBarView(
+                            children: [
+                              Data(),
+                              Data(),
+                              Data(),
+                              Data(),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            )
+        ));
   }
 }
